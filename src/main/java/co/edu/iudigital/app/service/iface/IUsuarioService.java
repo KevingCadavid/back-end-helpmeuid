@@ -10,7 +10,7 @@ public interface IUsuarioService {
 	
 
 	public List<UsuarioDto> listUsers () throws RestException;
-	
+		
 	public Usuario listUser(Long id) throws RestException;
 	
 	public Usuario saveUser(Usuario usuario) throws RestException;

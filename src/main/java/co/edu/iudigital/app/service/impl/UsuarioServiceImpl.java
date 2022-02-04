@@ -2,16 +2,21 @@ package co.edu.iudigital.app.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import co.edu.iudigital.app.dto.UsuarioDto;
+import co.edu.iudigital.app.exception.ErrorDto;
+import co.edu.iudigital.app.exception.NotFoundException;
 import co.edu.iudigital.app.exception.RestException;
 import co.edu.iudigital.app.model.Usuario;
 import co.edu.iudigital.app.repository.IUsuarioRepository;
 import co.edu.iudigital.app.service.iface.IUsuarioService;
+import co.edu.iudigital.app.util.ConstUtil;
 
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
@@ -33,8 +38,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		    usuarioDto.setUsername(u.getUsername());
 		    usuarioDto.setFechaNacimiento(u.getFechaNacimiento());
 		    usuarioDto.setEnabled(u.getEnabled());
-		    usuarioDto.setImage(u.getImage());                             
-		    usuarioDto.setRoles(null);
+		    usuarioDto.setImage(u.getImage());
+		    List<String> rols = (u.getRoles()).stream()
+		    		                          .map(role -> role.getNombre())
+		    		                          .collect(Collectors.toList());
+		    usuarioDto.setRoles(rols);
 		    usuarios.add(usuarioDto);		    
 		});
 		return usuarios;
@@ -42,8 +50,15 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	@Override
 	public Usuario listUser(Long id) throws RestException {
-		// TODO Auto-generated method stub
-		return null;
+      Optional<Usuario> usuarioBD = usuarioRepository.findById(id);
+      if (!usuarioBD.isPresent()) {
+    	  throw new NotFoundException(ErrorDto.getErrorDto(
+					 HttpStatus.NOT_FOUND.getReasonPhrase(), 
+					 ConstUtil.MESSAGE_NOT_FOUND, 
+					 HttpStatus.NOT_FOUND.value())
+				);
+      }
+      return usuarioRepository.findById(id).get();
 	}
 
 	@Override
