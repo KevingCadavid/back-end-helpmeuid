@@ -19,6 +19,8 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity 
 @Table ( name = "usuarios")
 
@@ -51,7 +53,7 @@ public class Usuario implements Serializable {
 	@Column (nullable = true,length = 120)
 	private String apellido;
 	
-	
+	@JsonProperty("fecha_nacimiento")
 	@Column (name = "fecha_nacimiento")
 	private LocalDateTime fechaNacimiento;
 	
