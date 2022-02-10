@@ -3,7 +3,7 @@ package co.edu.iudigital.app.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 public class UsuarioDto {
