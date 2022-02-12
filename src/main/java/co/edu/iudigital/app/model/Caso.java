@@ -33,6 +33,8 @@ public class Caso implements Serializable {
 	
 	private float longitud;
 	
+	private float altitud;
+	
 	private Boolean visible;
 	
 	private String descripcion;
@@ -40,8 +42,8 @@ public class Caso implements Serializable {
 	@Column (name = "url_map")
 	private String urlMap;
 	
-    @Column ( name = "rmi_url")
-	private String rmiUrl;
+    @Column ( name = "rmi_map")
+	private String rmiMap;
 
     @ManyToOne
     @JoinColumn (name = "usuarios_id")
@@ -116,12 +118,14 @@ public class Caso implements Serializable {
 		this.urlMap = urlMap;
 	}
 
-	public String getRmiUrl() {
-		return rmiUrl;
+
+
+	public String getRmiMap() {
+		return rmiMap;
 	}
 
-	public void setRmiUrl(String rmiUrl) {
-		this.rmiUrl = rmiUrl;
+	public void setRmiMap(String rmiMap) {
+		this.rmiMap = rmiMap;
 	}
 
 	public Usuario getUsuario() {
@@ -138,6 +142,14 @@ public class Caso implements Serializable {
 
 	public void setDelito(Delito delito) {
 		this.delito = delito;
+	}
+
+	public float getAltitud() {
+		return altitud;
+	}
+
+	public void setAltitud(float altitud) {
+		this.altitud = altitud;
 	}
     
     

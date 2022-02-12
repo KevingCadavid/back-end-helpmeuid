@@ -20,7 +20,7 @@ public class CasoDto {
 	
 	private String urlMap;
 	
-	private String rmiUrl;
+	private String rmiMap;
 
     private Long usuarioId;
     
@@ -84,13 +84,15 @@ public class CasoDto {
 		this.urlMap = urlMap;
 	}
 
-	public String getRmiUrl() {
-		return rmiUrl;
+
+	public String getRmiMap() {
+		return rmiMap;
 	}
 
-	public void setRmiUrl(String rmiUrl) {
-		this.rmiUrl = rmiUrl;
+	public void setRmiMap(String rmiMap) {
+		this.rmiMap = rmiMap;
 	}
+
 
 	public Long getUsuarioId() {
 		return usuarioId;

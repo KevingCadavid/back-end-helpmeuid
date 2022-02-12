@@ -38,7 +38,7 @@ public class CasoServiceImpl implements ICasoService {
         	casoDto.setVisible(c.getVisible());
         	casoDto.setDescripcion(c.getDescripcion());
         	casoDto.setUrlMap(c.getUrlMap());
-        	casoDto.setRmiUrl(c.getRmiUrl());
+        	casoDto.setRmiMap(c.getRmiMap());
         	casoDto.setUsuarioId(c.getUsuario().getId());
         	casoDto.setImage(c.getUsuario().getImage());
         	casoDto.setNombre(c.getUsuario().getNombre());
@@ -69,7 +69,7 @@ public class CasoServiceImpl implements ICasoService {
 	@Override
 	public Boolean visible(Boolean visible, Long id) throws RestException {     
 		return casoRepository.setVisible(visible, id); 
-	}
+	}		
 
 	@Transactional(readOnly = true)
 	@Override
